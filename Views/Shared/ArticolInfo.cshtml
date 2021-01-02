@@ -1,0 +1,14 @@
+﻿
+
+<div class="panel-heading" style="font-weight: bold;">@Model.TitluArticol</div>
+<div class="panel-body">
+    <strong>@Html.Raw(Model.ContinutArticol)</strong>
+    @*<strong>@Model.ContinutArticol</strong>*@
+    <hr>
+    <br />
+    <i class="glyphicon glyphicon-th-list"></i> @Model.Domeniu.NumeDomeniu
+    <small class="pull-right">@Model.Data</small>
+    <br />
+    <i class="glyphicon glyphicon-user"></i> <i>Articol scris de</i>
+    <strong> @Model.User.UserName </strong>
+</div>

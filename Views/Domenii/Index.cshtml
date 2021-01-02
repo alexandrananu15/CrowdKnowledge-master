@@ -1,0 +1,28 @@
+﻿
+@{ ViewBag.Title = "Lista domenii"; }
+
+@if (TempData.ContainsKey("message"))
+{
+<h1>@ViewBag.message</h1>}
+
+<h2>@ViewBag.Title</h2>
+<br />
+
+@foreach (var domeniu in ViewBag.Domenii)
+{
+<p> @Html.Label("NumeDomeniu", "Denumire domeniu"): @domeniu.NumeDomeniu</p>
+                <br />
+                                <a class="btn btn-success" href="/Domenii/Show/@domeniu.IDDomeniu">Afisare domeniu</a> if (User.IsInRole("Admin"))
+                                                {
+                                <a class="btn btn-success" href="/Domenii/Edit/@domeniu.IDDomeniu">Editare domeniu</a> }
+                                <br />
+                                                <hr />
+                                                                <br />}
+<br />
+@if (User.IsInRole("Admin"))
+{
+    <a class="btn btn-primary" href="/Domenii/New">Adauga domeniu</a>
+}
+<a class="btn btn-primary" href="/Articole/Index">Lista articole</a>
+<br />
+

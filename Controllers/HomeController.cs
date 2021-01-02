@@ -1,0 +1,42 @@
+﻿using CrowdKnowledge2.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using AppContext = CrowdKnowledge2.Models.ApplicationDbContext;
+
+namespace CrowdKnowledge2.Controllers
+{
+    public class HomeController : Controller
+    {
+        private ApplicationDbContext db = new CrowdKnowledge2.Models.ApplicationDbContext();
+        public ActionResult Index()
+        {
+            if (Request.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Articole");
+            }
+            var articole = (from articol in db.Articole
+                            select articol);
+
+            ViewBag.FirstArticle = articole.First();
+            ViewBag.Articles = articole.OrderBy(o => o.Data).Skip(1).Take(2);
+            return View();
+        }
+
+        public ActionResult About()
+        {
+            ViewBag.Message = "Your application description page.";
+
+            return View();
+        }
+
+        public ActionResult Contact()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
+    }
+}

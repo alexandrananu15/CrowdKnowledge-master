@@ -1,0 +1,30 @@
+﻿@model CrowdKnowledge2.Models.Domeniu
+@{ ViewBag.Title = "Afisare domeniu"; }
+
+<h2>@ViewBag.Title</h2>
+
+<p>@Model.NumeDomeniu</p>
+
+<ul>
+    @foreach (var artDom in Model.Articole)
+    {
+<li> <a href="/Articole/Show/@artDom.IDArticol"> @artDom.TitluArticol </a> </li>}
+</ul>
+
+@if (User.IsInRole("Admin"))
+{
+<form method="post" action="/Domenii/Delete/@Model.IDDomeniu">
+
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+
+    <button class="btn btn-success" type="submit">Sterge domeniul</button>
+
+</form>
+}
+<br />
+<a class="btn btn-success" href="/Domenii/Index/">Afisare lista domenii</a>
+
+<br />
+<hr />
+<br />
+

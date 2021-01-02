@@ -1,0 +1,14 @@
+﻿
+<div class="panel-heading" style="font-weight: bold;">@Model.TitluCapitol</div>
+<div class="panel-body">
+    <div class="article-content-wrapper">
+        @Html.Raw(Model.Content)
+    </div>
+    <hr>
+    <br />
+    <i class="glyphicon glyphicon-th-list"></i> @Model.Articol.TitluArticol
+    <small class="pull-right">@Model.Data</small>
+    <i class="glyphicon glyphicon-user"></i> <i>articol scris de</i>
+    <strong> @Model.User.UserName </strong>
+    <br /><br />
+</div>

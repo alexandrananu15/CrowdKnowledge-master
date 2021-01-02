@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Bun venit la Wikipedia FMI! :)";
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="jumbotron">
+            <h1 class="font-roboto">@ViewBag.FirstArticle.TitluArticol</h1>
+            <p class="truncate font-montserrat">
+                @ViewBag.FirstArticle.ContinutArticol
+            </p>
+        </div>
+    </div>
+</div>
+<div class="row">
+    @foreach (var article in ViewBag.Articles)
+    {
+        <div class="col-md-6 row-style">
+            <h2 class="font-roboto">@article.TitluArticol</h2>
+            <p class="truncate font-montserrat">
+                @article.ContinutArticol
+            </p>
+            <a class="btn btn-sm btn-success" href="/Account/Register">Register</a>
+            <a class="btn btn-sm btn-success" href="/Account/Login">Log in</a>
+        </div>
+    }
+</div>

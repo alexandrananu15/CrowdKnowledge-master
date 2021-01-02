@@ -1,0 +1,28 @@
+﻿@model CrowdKnowledge2.Models.Articol
+<h1 style="text-align: center;">Crowd Knowledge Contribution</h1>
+<br />
+<h2>@ViewBag.Message</h2>
+<h2>Capitolele articolului @Model.TitluArticol</h2>
+
+<a class="btn btn-primary" href="/Articole/Index">Afisare articole</a>
+
+ @if (ViewBag.afisareButoan == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
+ {
+       <a class="btn btn-primary" href="/Capitole/New/@Model.IDArticol">Adauga capitol</a>
+ }
+<br />
+<br />
+<br />
+
+@foreach (var cap in Model.Capitole)
+{
+    
+    <div class="panel panel-default">
+        @Html.Partial("CapitolInfo", cap)
+        <div class="panel-footer">
+            <a class="btn btn-success" href="/Capitole/Show/@cap.IDCapitol">Afisare capitol</a>
+        </div>
+    </div>
+    
+}
+

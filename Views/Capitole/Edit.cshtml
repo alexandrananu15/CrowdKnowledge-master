@@ -1,0 +1,30 @@
+﻿@model CrowdKnowledge2.Models.Capitol
+
+
+@using (Html.BeginForm(actionName: "Edit", controllerName: "Capitole"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(m => m.IDArticol)
+    @Html.HiddenFor(m => m.IDCapitol)
+    <br />
+    @Html.Label("TitluCapitol", "Titlu Capitol")
+    <br />
+    @Html.Editor("TitluCapitol")
+    @Html.ValidationMessageFor(m => m.TitluCapitol, "", new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Content", "Continut Capitol")
+    <br />
+    @Html.TextArea("Content", null, new { @class = "form-control summernote" })
+    @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.HiddenFor(m => m.Data)
+    <br />
+
+    <button class="btn btn-sm btn-success" type="submit">Modifica acest capitol</button>
+}
+

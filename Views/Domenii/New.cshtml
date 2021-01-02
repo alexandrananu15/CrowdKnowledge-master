@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Adaugare Domeniu";
+}
+
+
+<h2>Adaugare Domeniu</h2>
+
+<form method="post" action="/Domenii/New">
+
+    @Html.Label("NumeDomeniu", "Denumire domeniu")
+    <br />
+
+    @Html.TextBox("NumeDomeniu", null, new { @class = "form-control" })
+    <br /><br />
+
+    <button class="btn btn-success" type="submit">Adauga domeniu</button>
+</form>
+

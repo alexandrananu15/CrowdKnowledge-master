@@ -1,0 +1,31 @@
+﻿@model CrowdKnowledge2.Models.Capitol
+
+<h2>Adaugare capitol nou</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Capitole"))
+{
+
+    <input type="hidden" name="IDArticol" value="@ViewBag.IdCap" />
+
+    //@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    //@Html.HiddenFor(Model => Model.IDArticol)
+
+    @Html.Label("TitluCapitol", "Titlu Capitol")
+    <br />
+    @Html.TextBox("TitluCapitol", null, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.TitluCapitol, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("Content", "Continut Capitol")
+    <br />
+    @Html.TextArea("Content", null, new { @class = "form-control summernote" })
+    @Html.ValidationMessage("Content", null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <button class="btn btn-sm btn-success" type="submit">Adauga capitol</button>
+}
+

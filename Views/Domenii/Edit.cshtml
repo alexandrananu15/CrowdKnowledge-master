@@ -1,0 +1,18 @@
+﻿@model CrowdKnowledge2.Models.Domeniu
+
+<h2>Editare domeniu</h2>
+
+<form method="post" action="/Domenii/Edit/@Model.IDDomeniu">
+
+    @Html.HttpMethodOverride(HttpVerbs.Put)
+
+    @Html.HiddenFor(m => m.IDDomeniu)
+
+    @Html.Label("NumeDomeniu", "Denumire domeniu")
+    <br />
+    @Html.Editor("NumeDomeniu")
+    <br /><br />
+
+    <button class="btn btn-success" type="submit">Modifica domeniul</button>
+</form>
+

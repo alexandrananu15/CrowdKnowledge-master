@@ -1,0 +1,99 @@
+﻿@model CrowdKnowledge2.Models.Capitol
+
+@{ ViewBag.Title = "Show"; }
+
+<br />
+<a class="btn btn-info" href="/Capitole/Index/@Model.IDArticol">Inapoi la lista de capitole</a>
+<br />
+<br />
+<h3>@ViewBag.Message</h3>
+<br />
+
+<div class="panel panel-default">
+    @Html.Partial("CapitolInfo", Model)
+    <div class="panel-footer">
+         @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
+         {
+            <a class="btn btn-success pull-left" style="margin:5px" href="/Capitole/Edit/@Model.IDCapitol">Modifica capitol</a>
+         }
+        <a class="btn btn-success pull-left" style="margin:5px" href="/Capitole/Index/@Model.IDArticol">Lista capitole</a>
+       
+        
+         @if (ViewBag.afisareButoane == true && Model.UserId == ViewBag.utilizatorCurent || ViewBag.esteAdmin)
+         {
+             using (Html.BeginForm(actionName: "Delete", controllerName: "Capitole", method: FormMethod.Post, routeValues: new { id = @Model.IDCapitol }))
+             {
+                 @Html.HttpMethodOverride(HttpVerbs.Delete)
+                   <button class="btn btn-danger pull-right" style="margin:5px" type="submit">Sterge capitol</button>
+               }
+         }
+        <div class="clearfix"></div>
+    </div>
+</div>
+
+
+<br />
+
+
+@*@foreach (var capt in Model.Capitole)
+    {
+    <br /> //<div class="panel-heading">Capitolul @capt.IDCapitol</div>
+    <div class="panel-body" style="border-style: solid">
+        <div>
+            <p>@capt.Content</p>
+        </div>
+        <br />
+        <hr />
+        <small class="pull-right">@capt.Data</small>
+        <div style="display: block; float : left;">
+            Modificare capitol
+            <a class="glyphicon glyphicon-pencil" style="border: none;background: transparent; color: black" href="/Capitole/Edit/@capt.IDCapitol"></a>
+        </div>
+        <br />
+        <div style="display: block;">
+            Stergere capitol
+            <form method="post" action="/Capitole/Delete/@capt.IDCapitol" style="display:inline-block">
+                @Html.HttpMethodOverride(HttpVerbs.Delete)
+                <button class="glyphicon glyphicon-trash" style="border: none; background: transparent; color:black" type="submit"></button>
+            </form>
+        </div>
+    </div>}*@
+
+
+@*<div class="container">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="panel">
+                    <form method="post" action="/Capitole/New">
+                        <div class="panel-body">
+                            <input type="hidden" name="IDArticol" value="@Model.IDArticol" />
+                            <label>Continut capitol</label>
+                            <br />
+                            <textarea class="form-control" name="Content"></textarea>
+                            <br />
+                            <button class="btn btn-success " type="submit">Adauga capitol</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>*@
+
+
+@*@using (Html.BeginForm(actionName: "New", controllerName: "Capitole"))
+    {
+        @Html.HiddenFor(model => model.IDArticol)
+        <br />
+        @Html.Label("Capitol.Content", "Continut capitol:")
+        <br />
+        @Html.TextArea("Capitol.Content", null, new { @class = "form-control" })
+        @Html.ValidationMessage("Capitol Content", null, new { @class = "text-danger" })
+        <br />
+        <button class="btn btn-success " type="submit">Adauga capitol</button>
+    }*@
+
+
+

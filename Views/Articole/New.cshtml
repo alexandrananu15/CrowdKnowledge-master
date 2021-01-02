@@ -1,0 +1,33 @@
+﻿@model CrowdKnowledge2.Models.Articol
+
+<h2>Adaugare articol nou</h2>
+
+@using (Html.BeginForm(actionName: "New", controllerName: "Articole"))
+{
+    @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+    @Html.Label("TitluArticol", "Titlu Articol")
+    <br />
+    @Html.TextBox("TitluArticol", null, new { @class = "form-control" })
+
+    @Html.ValidationMessageFor(m => m.TitluArticol, null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    @Html.Label("ContinutArticol", "Descrierea Articolului")
+    <br />
+    @Html.TextArea("ContinutArticol", null, new { @class = "form-control summernote" })
+    @Html.ValidationMessage("ContinutArticol", null, new { @class = "text-danger" })
+    <br />
+    <br />
+
+    <label>Selectati domeniul articolului</label>
+    @Html.DropDownListFor(m => m.IDDomeniu, new SelectList(Model.Dom, "Value", "Text"),
+    "Selectati categoria", new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.IDDomeniu, "", new { @class = "text-danger" })
+    <br />
+    <br />
+    <button class="btn btn-sm btn-success" type="submit">Adauga articol</button>
+
+}
+
