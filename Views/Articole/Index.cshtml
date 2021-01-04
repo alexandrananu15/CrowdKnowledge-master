@@ -5,13 +5,22 @@
 
 @if (ViewBag.esteAdmin)
 {
-    <a class="btn btn-primary" href="/Domenii/Index">Afisare domenii</a>
+<a class="btn btn-primary" href="/Domenii/Index">Afisare domenii</a>}
+
+@if (ViewBag.afisareButoan == true)
+{
+<a class="btn btn-primary" href="/Articole/New">Adauga articol</a>}
+
+@if (ViewBag.sortMe == "alfabetic")
+{
+    <a class="btn btn-primary" href="?search=@ViewBag.search">Sorteaza dupa data</a> 
+}
+else
+{
+    <a class="btn btn-primary" href="?sort=alfabetic&search=@ViewBag.search">Sorteaza alfabetic</a>
 }
 
- @if (ViewBag.afisareButoan == true)
- {
-    <a class="btn btn-primary" href="/Articole/New">Adauga articol</a>
- }
+
 <br />
 <br />
 <br />
@@ -48,38 +57,34 @@
                 @if (ViewBag.search != "")
                 {<a href="/Articles/Index?page=1&search=@ViewBag.SearchString" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
-                    </a>
-                }
+                    </a> }
                 else
                 {
-                    <a href="/Articles/Index?page=1" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                }
+    <a href="/Articles/Index?page=1" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+    </a>}
             </li>
             @for (int i = 1; i <= ViewBag.lastPage; i++)
             {
                 if (ViewBag.search != "")
                 {
-                    <li><a href="/Articles/Index?page=@i&search=@ViewBag.SearchString">@(i)</a></li>
-                }
-                else
-                {
-                    <li><a href="/Articles/Index?page=@i">@(i)</a></li>
-                }
-            }
+<li><a href="/Articles/Index?page=@i&search=@ViewBag.SearchString">@(i)</a></li>
+ }
+else
+{
+<li><a href="/Articles/Index?page=@i">@(i)</a></li>
+}
+}
             <li>
                 @if (ViewBag.search != "")
                 {
-                    <a href="/Articles/Index?page=@(ViewBag.lastPage)&search=@ViewBag.SearchString" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                }
-                else
-                { <a href="/Articles/Index?page=@(ViewBag.lastPage)" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                }
+    <a href="/Articles/Index?page=@(ViewBag.lastPage)&search=@ViewBag.SearchString" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+    </a> }
+else
+{ <a href="/Articles/Index?page=@(ViewBag.lastPage)" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+    </a>}
             </li>
         </ul>
     </nav>

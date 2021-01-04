@@ -17,14 +17,19 @@ namespace CrowdKnowledge2.Controllers
 
         // Afisare lista articole
         [Authorize(Roles = "User,Editor,Admin")]
-        public ActionResult Index()
+        public ActionResult Index(string sort)
         {
             var articole = db.Articole.Include("Domeniu").Include("User");
-            ViewBag.Articole = articole;
+            ViewBag.sortMe = sort;
+           
+            if (sort == null)
+               articole = ViewBag.Articole = articole.OrderByDescending(a => a.Data);
+            else
+                articole = ViewBag.Articole = articole.OrderBy(a => a.TitluArticol);
             var search = "";
             if (Request.Params.Get("search") != null)
             {
-                search = Request.Params.Get("search").Trim();
+                ViewBag.search = search = Request.Params.Get("search").Trim();
                 //trim whitespace
                 //from search string
                 //Seacrh in articles (title and content)

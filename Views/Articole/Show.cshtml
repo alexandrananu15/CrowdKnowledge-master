@@ -31,7 +31,10 @@
 <div class="panel panel-default">
     @Html.Partial("ArticolInfo", Model)
 
-    <a class="btn btn-success pull-left" style="margin:5px" href="/Capitole/Index/@Model.IDArticol">Lista capitole</a>
+    <div class="panel-footer">
+        <a class="btn btn-success pull-left" style="margin:5px" href="/Capitole/Index/@Model.IDArticol">Lista capitole</a>
+        <div class="clearfix"></div>
+    </div> 
     @if (Model.UserId == User.Identity.GetUserId() && Model.Restrict == false || User.IsInRole("Admin"))
     {
 <div class="panel-footer">

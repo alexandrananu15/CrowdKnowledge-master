@@ -13,12 +13,8 @@ namespace CrowdKnowledge2.Controllers
         private ApplicationDbContext db = new CrowdKnowledge2.Models.ApplicationDbContext();
         public ActionResult Index()
         {
-            if (Request.IsAuthenticated)
-            {
-                return RedirectToAction("Index", "Articole");
-            }
-            var articole = (from articol in db.Articole
-                            select articol);
+
+            var articole = db.Articole.Include("Domeniu");
 
             ViewBag.FirstArticle = articole.First();
             ViewBag.Articles = articole.OrderBy(o => o.Data).Skip(1).Take(2);
