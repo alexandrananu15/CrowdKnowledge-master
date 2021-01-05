@@ -8436,6 +8436,7 @@ a.list-group-item-danger.active {
     display: grid;
     height: 120vh;
     width: 100vw;
+    padding-top:75px;
     padding: 0;
     margin: 0;
     position: absolute;
@@ -8579,4 +8580,9 @@ a.list-group-item-danger.active {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.DoamneAjuta {
+    margin-top:20vh;
+    margin-bottom:30vh;
 }
