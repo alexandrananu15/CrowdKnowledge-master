@@ -20,6 +20,12 @@ html {
 
 body {
     margin: 0;
+    padding-top:50px;
+}
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 article,
@@ -8425,20 +8431,152 @@ a.list-group-item-danger.active {
 
 
 .container-img1 {
+    background-image:url(/poza1.jpg);
+    object-fit: fill;
     display: grid;
-    height:100vh;
-    width:100%;
-    padding:0;
-    margin:0;
+    height: 120vh;
+    width: 100vw;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
 
 .img1 {
-    max-width:100%;
-    max-height:100vh;
-    margin:auto;
+    object-fit: fill;
+    max-width: 100%;
+    max-height: 100vh;
+    margin: auto;
+    overflow: auto;
 }
+
+/*Extra small devices (portrait phones, less than 576px)*/
+@media (max-width: 575.98px) {
+    cointainer-img
+
+{
+    height: 75vh;
+
+    }
+
+}
+
+/*Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) and (max-width: 767.98px) {
+    cointainer-img
+
+{
+    height: 50vh;
+}
+
+}
+ /*Medium devices (tablets, 768px and up)*/
+@media (min-width: 768px) and (max-width: 991.98px) {
+    cointainer-img
+
+{
+    height:75vh;
+}
+
+}
+
+/*Large devices (desktops, 992px and up)*/
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    cointainer-img
+
+{
+    height: 75vh;
+}
+
+}
+
+/*Extra large devices (large desktops, 1200px and up)*/
+@media (min-width: 1200px) {
+    cointainer-img
+
+{
+    height:50vh;
+}
+
+}
+
+
+
+
+
 
 .img2 {
     float: left;
+}
+
+    .img2:hover {
+        transform: scale(1.1);
+        box-shadow: 2px 2px 2px 2px #ccc;
+    }
+
+/* Style for contact page*/
+.rowContact {
+    display: flex;
+}
+
+.columnContact {
+    flex: 50%;
+    padding: 10px;
+}
+
+/* Style for about page*/
+.columnAbout {
+    float: left;
+    width: 50%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+}
+
+.cardAbout {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+}
+
+.about-section h1 {
+    text-align: center;
+}
+
+.about-section {
+    padding: 70px;
+    color: white;
+}
+
+.containerAbout {
+    padding: 0 16px;
+}
+
+.containerAbout::after, .row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+.buttonAbout {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+}
+
+.buttonAbout:hover {
+    background-color: #555;
+}
+
+.imgAbout {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
