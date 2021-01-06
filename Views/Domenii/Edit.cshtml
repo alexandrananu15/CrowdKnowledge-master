@@ -10,7 +10,8 @@
 
     @Html.Label("NumeDomeniu", "Denumire domeniu")
     <br />
-    @Html.Editor("NumeDomeniu")
+    @*@Html.Editor("NumeDomeniu")*@
+    @Html.TextBox("NumeDomeniu", null, new { @class = "form-control" })
     <br /><br />
 
     <button class="btn btn-success" type="submit">Modifica domeniul</button>

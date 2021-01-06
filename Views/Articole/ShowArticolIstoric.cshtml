@@ -1,0 +1,82 @@
+﻿@model CrowdKnowledge2.Models.Articol
+
+@{
+    ViewBag.Title = "ShowArticolIstoric";
+}
+
+@if (TempData.ContainsKey("message"))
+{
+    <h1>@ViewBag.message</h1>
+}
+<br />
+<a class="btn btn-primary" href="/Articole/ShowIstoric/@Model.IdParent">Inapoi la Istoric Articol</a>
+<br />
+<br />
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="font-weight: bold;">@Model.TitluArticol</div>
+    <div class="panel-body">
+        <strong>@Html.Raw(Model.ContinutArticol)</strong>
+        <hr>
+        <br />
+        <i class="glyphicon glyphicon-th-list"></i> @Model.Domeniu.NumeDomeniu
+        <small class="pull-right">@Model.Data</small>
+        <br />
+        <i class="glyphicon glyphicon-user"></i> <i>Articol scris de</i>
+        <strong> @Model.User.UserName </strong>
+    </div>
+
+        <form method="post" action="/Articole/Edit/@Model.IdParent">
+
+            @Html.HttpMethodOverride(HttpVerbs.Put)
+            <br />
+            @Html.HiddenFor(m => m.IdParent)
+            @Html.HiddenFor(m => m.TitluArticol)
+            @Html.HiddenFor(m => m.Data)
+            @Html.HiddenFor(m => m.IDDomeniu)
+            @Html.HiddenFor(m => m.ContinutArticol)
+            <br />
+            <button class="btn btn-success pull-left" type="submit">Intoarce articolul la aceasta versiune</button>
+
+        </form>
+        <form method="post" action="/Articole/Delete/@Model.IDArticol">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger pull-right" type="submit">Sterge aceasta versiune</button>
+        </form>
+   
+</div>
+
+<div class="clearfix"></div>
+
+@*<div class="card text-white bg-primary mb-3">
+    <div class="card-header">@Model.TitluArticol</div>
+    <div class="card-body">
+        Continut articol: <strong class="card-text">@Model.ContinutArticol</strong>
+        <br />
+        <span class="label label-success">@Model.Data</span>
+        <br />
+        <i class="glyphicon glyphicon-globe"></i> @Model.Domeniu.NumeDomeniu
+        <br />
+        <i class="glyphicon glyphicon-user"></i> <i>articol scris de</i>
+        <strong> @Model.User.UserName </strong>
+        <br />
+        <hr>
+        <form method="post" action="/Articole/Edit/@Model.IdParent">
+
+            @Html.HttpMethodOverride(HttpVerbs.Put)
+            <br />
+            @Html.HiddenFor(m => m.IdParent)
+            @Html.HiddenFor(m => m.TitluArticol)
+            @Html.HiddenFor(m => m.Data)
+            @Html.HiddenFor(m => m.IDDomeniu)
+            @Html.HiddenFor(m => m.ContinutArticol)
+            <br />
+            <button class="btn btn-sm btn-success pull-left" type="submit">Intoarce articolul la aceasta versiune</button>
+
+        </form>
+        <form method="post" action="/Articole/Delete/@Model.IDArticol">
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+            <button class="btn btn-danger pull-right" type="submit">Sterge aceasta versiune</button>
+        </form>
+    </div>
+</div>*@

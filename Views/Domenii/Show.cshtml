@@ -6,7 +6,7 @@
 <p>@Model.NumeDomeniu</p>
 
 <ul>
-    @foreach (var artDom in Model.Articole)
+    @foreach (var artDom in Model.Articole.Where(at => at.IdParent==0))
     {
 <li> <a href="/Articole/Show/@artDom.IDArticol"> @artDom.TitluArticol </a> </li>}
 </ul>

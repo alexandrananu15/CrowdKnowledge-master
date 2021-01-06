@@ -38,12 +38,25 @@
     @if (Model.UserId == User.Identity.GetUserId() && Model.Restrict == false || User.IsInRole("Admin"))
     {
 <div class="panel-footer">
-    <a class="btn btn-success pull-left" style="margin:5px" href="/Articole/Edit/@Model.IDArticol">Modifica articol</a>
-    @using (Html.BeginForm(actionName: "Delete", controllerName: "Articole", method: FormMethod.Post, routeValues: new { id = @Model.IDArticol }))
+    <a class="btn btn-success pull-left" style="margin-right:5px" href="/Articole/Edit/@Model.IDArticol">Modifica articol</a>
+    <a class="btn btn-success "  href="/Articole/ShowIstoric/@Model.IDArticol">Istoric</a>
+    <div class="pull-right">
+        @using (Html.BeginForm(actionName: "Delete", controllerName: "Articole", method: FormMethod.Post, routeValues: new { id = @Model.IDArticol }))
+        {
+            @Html.HttpMethodOverride(HttpVerbs.Delete)
+                        <button class="btn btn-danger pull-right" type="submit">Sterge articol</button>}
+
+    </div>
+    @*@using (Html.BeginForm(actionName: "Delete", controllerName: "Articole", method: FormMethod.Post, routeValues: new { id = @Model.IDArticol }))
     {
-@Html.HttpMethodOverride(HttpVerbs.Delete)
+        @Html.HttpMethodOverride(HttpVerbs.Delete)
                     <button class="btn btn-danger pull-right" style="margin:5px" type="submit">Sterge articol</button>}
-    <div class="clearfix"></div>
+
+
+
+    <div class="clearfix"></div>*@
+
+
 </div>
     }
 </div>

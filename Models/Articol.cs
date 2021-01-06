@@ -26,7 +26,8 @@ namespace CrowdKnowledge2.Models
 
         [Required(ErrorMessage = "Categoria articolului este camp obligatoriu!")]
         public int IDDomeniu { get; set; }
-
+        
+        public int IdParent { get; set; }
 
         //ID-ul utilizatorului care a creat respectivul articol
         public string UserId { get; set; }

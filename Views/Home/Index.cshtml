@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Wiki-FM10";
+    ViewBag.Title = "Wiki-FM10                 ";
 }
 
 <div class="container-img1">
@@ -25,11 +25,11 @@
     <div class="col-md-6 row-style">
         <h2 class="font-roboto">@article.TitluArticol</h2>
         <p class="truncate font-montserrat">
-            @article.ContinutArticol
+            @Html.Raw(@article.ContinutArticol)
+            @*@article.ContinutArticol*@
         </p>
         @if (User.Identity.IsAuthenticated)
         {
-            
             <a class="btn btn-sm btn-success" href="/Domenii/Show/@article.IDDomeniu">Mergi la domeniul @article.Domeniu.NumeDomeniu!</a>
         }
         else

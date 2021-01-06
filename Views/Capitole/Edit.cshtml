@@ -10,7 +10,8 @@
     <br />
     @Html.Label("TitluCapitol", "Titlu Capitol")
     <br />
-    @Html.Editor("TitluCapitol")
+    @*@Html.Editor("TitluCapitol")*@
+    @Html.TextBox("TitluCapitol", null, new { @class = "form-control" })
     @Html.ValidationMessageFor(m => m.TitluCapitol, "", new { @class = "text-danger" })
     <br />
     <br />

@@ -39,6 +39,7 @@ else
                         <input class="form-control form-control-lg form-control-borderless" type="text" name="search" value="@ViewBag.SearchString"
                                placeholder="Search topics or keywords">
                     </div>
+                    <br />
                     <!--end of col-->
                     <div class="col-auto">
                         <button class="btn btn-lg btn-success" type="submit">Search</button>
@@ -50,7 +51,9 @@ else
         <!--end of col-->
     </div>
 </div>
-<div>
+<br />
+<br />
+@*<div>
     <nav aria-label="Page navigation">
         <ul class="pagination">
             <li>
@@ -88,7 +91,7 @@ else
             </li>
         </ul>
     </nav>
-</div>
+</div>*@
 
 @foreach (CrowdKnowledge2.Models.Articol articol in ViewBag.Articole)
 {

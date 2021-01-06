@@ -19,7 +19,7 @@ namespace CrowdKnowledge2.Controllers
         [Authorize(Roles = "User,Editor,Admin")]
         public ActionResult Index(string sort)
         {
-            var articole = db.Articole.Include("Domeniu").Include("User");
+            var articole = db.Articole.Include("Domeniu").Include("User").Where(at => at.IdParent == 0);
             ViewBag.sortMe = sort;
            
             if (sort == null)
@@ -111,6 +111,7 @@ namespace CrowdKnowledge2.Controllers
             articol.Dom = GetAllCategories();
             articol.Data = DateTime.Now;
             articol.UserId = User.Identity.GetUserId();
+            articol.IdParent = 0;
             try
            {
                 if (ModelState.IsValid)
@@ -182,17 +183,45 @@ namespace CrowdKnowledge2.Controllers
                     Articol articol = db.Articole.Find(id);
                     if (articol.UserId == User.Identity.GetUserId() && articol.Restrict == false || User.IsInRole("Admin"))
                     {
+                        Articol LogArticle = new Articol();
+                        LogArticle.TitluArticol = articol.TitluArticol;
+                        LogArticle.ContinutArticol = articol.ContinutArticol;
+                        LogArticle.Data = DateTime.Now;
+                        LogArticle.IDDomeniu = articol.IDDomeniu;
+                        LogArticle.Restrict = articol.Restrict;
+                        LogArticle.User = articol.User;
+                        LogArticle.UserId = articol.UserId;
+                        LogArticle.IdParent = id;
+
                         if (TryUpdateModel(articol))
                         {
-                            articol.TitluArticol = requestArticol.TitluArticol;
-                            // Protect content from XSS
                             requestArticol.ContinutArticol = Sanitizer.GetSafeHtmlFragment(requestArticol.ContinutArticol);
+                            db.Articole.Add(LogArticle);
+                            db.SaveChanges();
+
+                            articol.TitluArticol = requestArticol.TitluArticol;
                             articol.ContinutArticol = requestArticol.ContinutArticol;
+                            articol.Data = requestArticol.Data;
                             articol.IDDomeniu = requestArticol.IDDomeniu;
+                            articol.IdParent = 0;
                             db.SaveChanges();
                             TempData["message"] = "Articolul a fost modificat!";
+                            return RedirectToAction("Show/" + id);
                         }
-                        return RedirectToAction("Index");
+
+                        return View(requestArticol);
+
+                        //if (TryUpdateModel(articol))
+                        //{
+                        //    articol.TitluArticol = requestArticol.TitluArticol;
+                        //    // Protect content from XSS
+                        //    requestArticol.ContinutArticol = Sanitizer.GetSafeHtmlFragment(requestArticol.ContinutArticol);
+                        //    articol.ContinutArticol = requestArticol.ContinutArticol;
+                        //    articol.IDDomeniu = requestArticol.IDDomeniu;
+                        //    db.SaveChanges();
+                        //    TempData["message"] = "Articolul a fost modificat!";
+                        //}
+                        //return RedirectToAction("Index");
                     }
                     else
                     {
@@ -223,6 +252,9 @@ namespace CrowdKnowledge2.Controllers
             Articol articol = db.Articole.Find(id);
             if (articol.UserId == User.Identity.GetUserId() && articol.Restrict == false || User.IsInRole("Admin"))
             {
+                db.Articole.RemoveRange(db.Articole.Where(currArt => currArt.IdParent == id));
+                db.SaveChanges();
+
                 db.Articole.Remove(articol);
                 db.SaveChanges();
                 TempData["message"] = "Articolul a fost sters!";
@@ -252,6 +284,42 @@ namespace CrowdKnowledge2.Controllers
                 });
             }
             return lista;
+        }
+
+        public ActionResult ShowIstoric(int id)
+        {
+            Articol art = db.Articole.Find(id);
+            if (art.UserId == User.Identity.GetUserId() || User.IsInRole("Admin"))
+            {
+                var articles = from article in db.Articole.Include("Domeniu").Include("User")
+                               where article.IdParent == id
+                               select article;
+
+                ViewBag.Articles = articles;
+                ViewBag.Id = id;
+                if (TempData.ContainsKey("message"))
+                {
+                    ViewBag.Message = TempData["message"];
+                }
+
+                return View();
+            }
+            else
+            {
+                TempData["message"] = "Nu aveti dreptul sa accesati istoricul unui articol care nu va apartine!";
+                return RedirectToAction("Show/" + id);
+            }
+        }
+
+        [Authorize(Roles = "Editor,Admin")]
+        public ActionResult ShowArticolIstoric(int id)
+        {
+            Articol article = db.Articole.Find(id);
+            if (TempData.ContainsKey("message"))
+            {
+                ViewBag.Message = TempData["message"];
+            }
+            return View(article);
         }
     }
 }

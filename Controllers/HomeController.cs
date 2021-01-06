@@ -17,7 +17,7 @@ namespace CrowdKnowledge2.Controllers
             var articole = db.Articole.Include("Domeniu");
 
             ViewBag.FirstArticle = articole.First();
-            ViewBag.Articles = articole.OrderBy(o => o.Data).Skip(1).Take(2);
+            ViewBag.Articles = articole.Where(o => o.IdParent == 0).OrderByDescending(o => o.Data).Take(2);
             return View();
         }
 

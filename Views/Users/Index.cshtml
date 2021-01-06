@@ -3,6 +3,7 @@
 }
 <ol class="breadcrumb">
     <li><h3>@ViewBag.Title</h3></li>
+    <span style="padding-left:10px" class="glyphicon glyphicon-user"></span>
 </ol>
 
 @foreach (var user in ViewBag.UsersList)
@@ -13,7 +14,7 @@
         <br /><br />
         @if (@user.PhoneNumber != null)
         {
-            <i class="glyphicon glyphicon-phone"></i>@:Telefon utilizator:<span class="label label-default">@user.PhoneNumber</span>
+            <i class="glyphicon glyphicon-phone"></i>@:Telefon utilizator: <span class="label label-default">@user.PhoneNumber</span>
         }
     </div>
 

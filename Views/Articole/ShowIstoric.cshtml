@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "ShowIstoric";
+}
+<h1>@ViewBag.Message</h1>
+
+<header class="page-header">
+    <h2 class="page-title">Istoric Articol</h2>
+</header>
+<br />
+<div style="margin-bottom:10px">
+    <a class="btn btn-primary" href="/Articole/Show/@ViewBag.Id">Inapoi la Articol</a>
+</div>
+<br />
+
+@foreach (var article in ViewBag.Articles)
+{
+<div class="panel panel-default">
+    @*@Html.Partial("ArticolInfo", article)*@
+
+    <div class="panel-heading" style="font-weight: bold;">@article.TitluArticol</div>
+    <div class="panel-body">
+        <strong>@Html.Raw(article.ContinutArticol)</strong>
+        @*<strong>@Model.ContinutArticol</strong>*@
+        <hr>
+        <br />
+        <i class="glyphicon glyphicon-th-list"></i> @article.Domeniu.NumeDomeniu
+        <small class="pull-right">@article.Data</small>
+        <br />
+        <i class="glyphicon glyphicon-user"></i> <i>Articol scris de</i>
+        <strong> @article.User.UserName </strong>
+    </div>
+
+    <div class="panel-footer">
+        <a class="btn btn-warning" href="/Articole/ShowArticolIstoric/@article.IDArticol">Afisare aceasta versiune</a>
+    </div>
+</div>
+
+
+}
+

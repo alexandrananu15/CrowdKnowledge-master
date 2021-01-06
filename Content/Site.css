@@ -8453,6 +8453,34 @@ a.list-group-item-danger.active {
     overflow: auto;
 }
 
+.imgDom {
+    background-image: url(/poza2.jpg);
+    object-fit: fill;
+    display: grid;
+    height: 80vh;
+    width: 100vw;
+    padding-top: 100px;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    text-align: center;
+    top: 0;
+    left: 0;
+}
+
+.titluDom {
+    z-index: 100;
+    position: relative;
+    margin-top:80px;
+    text-align:center;
+}
+
+.tempdatadom{
+    z-index: 100;
+    position: relative;
+}
+
+
 /*Extra small devices (portrait phones, less than 576px)*/
 @media (max-width: 575.98px) {
     cointainer-img
@@ -8585,4 +8613,22 @@ a.list-group-item-danger.active {
 .DoamneAjuta {
     margin-top:20vh;
     margin-bottom:30vh;
+}
+
+.DoamneAjuta2 {
+    margin-top: 67vh;
+    margin-bottom: 20vh;
+}
+
+
+/* Style focus */
+.form-control:focus {
+    border: 3px solid #2f755d;
+    box-shadow: 0 1px 0 0 #2f755d;
+}
+
+/* Style img register */
+.registerimg {
+    margin: auto;
+    display: block;
 }
